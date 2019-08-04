@@ -22,7 +22,7 @@ public abstract class Monster extends AnimatedEntity {
         double distanceToPlayer = MathUtil.distance(position, player.getPosition());
         System.out.println(distanceToPlayer);
 
-        if(distanceToPlayer < 500) {
+        if(Math.abs(distanceToPlayer) < 500) {
             if (player.getPosition().y > position.y) {
                 acceleration.y += movementSpeed * delta;
                 moving = true;

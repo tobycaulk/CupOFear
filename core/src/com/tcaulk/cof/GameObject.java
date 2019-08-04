@@ -1,7 +1,9 @@
 package com.tcaulk.cof;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.tcaulk.cof.geometry.WireFrameRectangle;
 
 public abstract class GameObject {
     protected Vector2 position;
@@ -11,6 +13,7 @@ public abstract class GameObject {
     protected int height;
     protected boolean isCollidable;
     protected float velocitySmooth;
+    protected Rectangle boundingBox;
 
     public GameObject(Vector2 position, int width, int height, boolean isCollidable, float movementSpeed, float velocitySmooth) {
         this.position = position;
@@ -21,10 +24,14 @@ public abstract class GameObject {
         this.velocitySmooth = velocitySmooth;
 
         this.velocity = new Vector2(0, 0);
+        this.boundingBox = new Rectangle(position.x, position.y, width, height);
     }
 
-    public abstract void render(SpriteBatch batch);
     public abstract void update(float delta);
+
+    public void render(SpriteBatch batch) {
+        WireFrameRectangle.render(batch, (int) position.x, (int) position.y, width, height);
+    }
 
     public Vector2 getPosition() {
         return position;
@@ -81,5 +88,4 @@ public abstract class GameObject {
     public void setVelocitySmooth(float velocitySmooth) {
         this.velocitySmooth = velocitySmooth;
     }
-
 }

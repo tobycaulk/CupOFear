@@ -37,6 +37,8 @@ public abstract class AnimatedEntity extends Entity {
 
     @Override
     public void render(SpriteBatch batch) {
+        super.render(batch);
+
         batch.draw(animationProvider.getCurrentFrameTexture(entityDirection.shouldFlip), position.x, position.y, width, height);
     }
 

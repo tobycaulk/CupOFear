@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.tcaulk.cof.GameObject;
 import com.tcaulk.cof.Main;
 import com.tcaulk.cof.entity.AnimatedEntity;
 import com.tcaulk.cof.entity.Player;
@@ -20,7 +21,7 @@ public class Game implements Screen {
     private Player player;
     private InputController inputController;
     private OrthographicCamera camera;
-    private List<Skeleton> skeletons;
+    private List<GameObject> gameObjects;
 
     public Game(Main main) {
         this.main = main;
@@ -29,9 +30,11 @@ public class Game implements Screen {
         camera.setToOrtho(false, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 
         inputController = new InputController();
+        gameObjects = new ArrayList<>();
 
         this.player = new Player(Main.SCREEN_WIDTH / 2 - 48 / 2, Main.SCREEN_HEIGHT / 2 - 60 / 2, inputController);
-        this.skeletons = new ArrayList<>();
+        gameObjects.add(player);
+
         for(int i = 0; i < new Random().nextInt(10) + 1; i++) {
             int x = new Random().nextInt(Main.SCREEN_WIDTH - 32) + 16;
             int y = new Random().nextInt(Main.SCREEN_HEIGHT - 32) + 16;
@@ -40,7 +43,7 @@ public class Game implements Screen {
                 entityDirection = AnimatedEntity.EntityDirection.Left;
             }
 
-            skeletons.add(new Skeleton(x, y, entityDirection, player));
+            //gameObjects.add(new Skeleton(x, y, entityDirection, player));
         }
     }
 
@@ -57,9 +60,8 @@ public class Game implements Screen {
 
         main.batch.setProjectionMatrix(camera.combined);
         main.batch.begin();
-        player.render(main.batch);
-        for(Skeleton s : skeletons) {
-            s.render(main.batch);
+        for(GameObject go : gameObjects) {
+            go.render(main.batch);
         }
         main.batch.end();
 
@@ -67,9 +69,8 @@ public class Game implements Screen {
     }
 
     private void update(float delta) {
-        player.update(delta);
-        for(Skeleton s : skeletons) {
-            s.update(delta);
+        for(GameObject go : gameObjects) {
+            go.update(delta);
         }
     }
 
