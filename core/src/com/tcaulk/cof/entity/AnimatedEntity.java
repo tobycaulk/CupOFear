@@ -24,22 +24,23 @@ public abstract class AnimatedEntity extends Entity {
     }
 
     private AnimationProvider animationProvider;
-    protected EntityDirection entityDirection;
+    EntityDirection entityDirection;
 
-    public AnimatedEntity(int x, int y, int width, int height, boolean isCollidable, float movementSpeed, List<Animation> animations, int initialAnimationIndex, EntityDirection startingEntityDirection) {
-        super(x, y, width, height, isCollidable, movementSpeed);
+    AnimatedEntity(int x, int y, int width, int height, boolean isCollidable, float movementSpeed, float velocitySmooth, int initialAnimationIndex, EntityDirection startingEntityDirection) {
+        super(x, y, width, height, isCollidable, movementSpeed, velocitySmooth);
 
-        this.animationProvider = new AnimationProvider(animations, initialAnimationIndex);
+        this.animationProvider = new AnimationProvider(getAnimations(), initialAnimationIndex);
         this.entityDirection = startingEntityDirection;
     }
 
+    protected abstract List<Animation> getAnimations();
+
     @Override
     public void render(SpriteBatch batch) {
-        System.out.println(entityDirection);
         batch.draw(animationProvider.getCurrentFrameTexture(entityDirection.shouldFlip), position.x, position.y, width, height);
     }
 
-    public void setAnimationIndex(int animationIndex) {
+    void setAnimationIndex(int animationIndex) {
         animationProvider.setCurrentAnimationIndex(animationIndex);
     }
 }

@@ -10,13 +10,15 @@ public abstract class GameObject {
     protected int width;
     protected int height;
     protected boolean isCollidable;
+    protected float velocitySmooth;
 
-    public GameObject(Vector2 position, int width, int height, boolean isCollidable, float movementSpeed) {
+    public GameObject(Vector2 position, int width, int height, boolean isCollidable, float movementSpeed, float velocitySmooth) {
         this.position = position;
         this.width = width;
         this.height = height;
         this.isCollidable = isCollidable;
         this.movementSpeed = movementSpeed;
+        this.velocitySmooth = velocitySmooth;
 
         this.velocity = new Vector2(0, 0);
     }
@@ -71,4 +73,13 @@ public abstract class GameObject {
     public void setMovementSpeed(float movementSpeed) {
         this.movementSpeed = movementSpeed;
     }
+
+    public float getVelocitySmooth() {
+        return velocitySmooth;
+    }
+
+    public void setVelocitySmooth(float velocitySmooth) {
+        this.velocitySmooth = velocitySmooth;
+    }
+
 }

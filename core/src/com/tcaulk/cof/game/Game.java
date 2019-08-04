@@ -68,6 +68,9 @@ public class Game implements Screen {
 
     private void update(float delta) {
         player.update(delta);
+        for(Skeleton s : skeletons) {
+            s.update(delta);
+        }
     }
 
     @Override

@@ -27,9 +27,13 @@ public class Skeleton extends Monster {
     }
 
     public Skeleton(int x, int y, EntityDirection startingEntityDirection, Player player) {
-        super(x, y, 48, 48, MOVEMENT_SPEED, Arrays.asList(
+        super(x, y, 48, 48, MOVEMENT_SPEED, VELOCITY_SMOOTH, SkeletonAnimation.IDLE.getAnimationIndex(), startingEntityDirection, player);
+    }
+
+    protected List<Animation> getAnimations() {
+        return Arrays.asList(
                 new Animation(TextureStore.SPRITESHEET, Animation.getFrameRange(368, 80, 16, 16, 4)),
                 new Animation(TextureStore.SPRITESHEET, Animation.getFrameRange(432, 80, 16, 16, 4))
-        ), SkeletonAnimation.IDLE.getAnimationIndex(), startingEntityDirection, player);
+        );
     }
 }

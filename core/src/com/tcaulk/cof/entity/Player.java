@@ -27,17 +27,20 @@ public class Player extends AnimatedEntity {
         }
     }
 
-    private static List<Animation> animations = Arrays.asList(
-            new Animation(TextureStore.SPRITESHEET, Animation.getFrameRange(368, 172, 16, 20, 4)),
-            new Animation(TextureStore.SPRITESHEET, Animation.getFrameRange(432, 172, 16, 20, 4))
-    );
-
     private InputController inputController;
 
     public Player(int x, int y, InputController inputController) {
-        super(x, y, 48, 60, true, MOVEMENT_SPEED, animations, PlayerAnimation.IDLE.getAnimationIndex(), EntityDirection.Right);
+        super(x, y, 48, 60, true, MOVEMENT_SPEED, VELOCITY_SMOOTH, PlayerAnimation.IDLE.getAnimationIndex(), EntityDirection.Right);
 
         this.inputController = inputController;
+    }
+
+    @Override
+    protected List<Animation> getAnimations() {
+        return Arrays.asList(
+                new Animation(TextureStore.SPRITESHEET, Animation.getFrameRange(368, 172, 16, 20, 4)),
+                new Animation(TextureStore.SPRITESHEET, Animation.getFrameRange(432, 172, 16, 20, 4))
+        );
     }
 
     @Override
@@ -67,8 +70,8 @@ public class Player extends AnimatedEntity {
         velocity.add(acceleration);
         position.add(velocity);
 
-        velocity.x *= VELOCITY_SMOOTH;
-        velocity.y *= VELOCITY_SMOOTH;
+        velocity.x *= velocitySmooth;
+        velocity.y *= velocitySmooth;
 
         if(moving) {
             setAnimationIndex(PlayerAnimation.RUN.getAnimationIndex());
