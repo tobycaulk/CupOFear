@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Skeleton extends Monster {
 
-    private static final float MOVEMENT_SPEED = 100f;
+    private static final float MOVEMENT_SPEED = 80f;
     private static final float VELOCITY_SMOOTH = 0.52f;
 
     public static enum SkeletonAnimation {

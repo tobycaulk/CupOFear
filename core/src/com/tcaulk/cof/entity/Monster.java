@@ -1,6 +1,7 @@
 package com.tcaulk.cof.entity;
 
 import com.badlogic.gdx.math.Vector2;
+import com.tcaulk.cof.util.MathUtil;
 
 public abstract class Monster extends AnimatedEntity {
 
@@ -18,20 +19,25 @@ public abstract class Monster extends AnimatedEntity {
         boolean moving = false;
         EntityDirection nextEntityDirection = entityDirection;
 
-        if(player.getPosition().y > position.y) {
-            acceleration.y += movementSpeed * delta;
-            moving = true;
-        } else {
-            acceleration.y += -movementSpeed * delta;
-            moving = true;
-        }
+        double distanceToPlayer = MathUtil.distance(position, player.getPosition());
+        System.out.println(distanceToPlayer);
 
-        if(player.getPosition().x > position.x) {
-            acceleration.x += movementSpeed * delta;
-            moving = true;
-        } else {
-            acceleration.x += -movementSpeed * delta;
-            moving = true;
+        if(distanceToPlayer < 500) {
+            if (player.getPosition().y > position.y) {
+                acceleration.y += movementSpeed * delta;
+                moving = true;
+            } else {
+                acceleration.y += -movementSpeed * delta;
+                moving = true;
+            }
+
+            if (player.getPosition().x > position.x) {
+                acceleration.x += movementSpeed * delta;
+                moving = true;
+            } else {
+                acceleration.x += -movementSpeed * delta;
+                moving = true;
+            }
         }
 
         velocity.add(acceleration);
