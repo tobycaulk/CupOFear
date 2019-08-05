@@ -30,7 +30,7 @@ public class Player extends AnimatedEntity {
     private InputController inputController;
 
     public Player(int x, int y, InputController inputController) {
-        super(x, y, 48, 84, true, MOVEMENT_SPEED, VELOCITY_SMOOTH, PlayerAnimation.IDLE.getAnimationIndex(), EntityDirection.Right);
+        super(x, y, 48, 84, true, MOVEMENT_SPEED, VELOCITY_SMOOTH, 38, 54, PlayerAnimation.IDLE.getAnimationIndex(), EntityDirection.Right);
 
         this.inputController = inputController;
     }

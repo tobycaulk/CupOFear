@@ -27,7 +27,7 @@ public class Skeleton extends Monster {
     }
 
     public Skeleton(int x, int y, EntityDirection startingEntityDirection, Player player) {
-        super(x, y, 48, 48, MOVEMENT_SPEED, VELOCITY_SMOOTH, SkeletonAnimation.IDLE.getAnimationIndex(), startingEntityDirection, player);
+        super(x, y, 48, 48, MOVEMENT_SPEED, VELOCITY_SMOOTH, 38, 38, SkeletonAnimation.IDLE.getAnimationIndex(), startingEntityDirection, player);
     }
 
     protected List<Animation> getAnimations() {

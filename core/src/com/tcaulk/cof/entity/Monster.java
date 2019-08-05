@@ -7,8 +7,8 @@ public abstract class Monster extends AnimatedEntity {
 
     private Player player;
 
-    Monster(int x, int y, int width, int height, float movementSpeed, float velocitySmooth, int initialAnimationIndex, EntityDirection startingEntityDirection, Player player) {
-        super(x, y, width, height, true, movementSpeed, velocitySmooth, initialAnimationIndex, startingEntityDirection);
+    Monster(int x, int y, int width, int height, float movementSpeed, float velocitySmooth, int boundingBoxWidth, int boundingBoxHeight, int initialAnimationIndex, EntityDirection startingEntityDirection, Player player) {
+        super(x, y, width, height, true, movementSpeed, velocitySmooth, boundingBoxWidth, boundingBoxHeight, initialAnimationIndex, startingEntityDirection);
 
         this.player = player;
     }

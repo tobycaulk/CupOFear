@@ -26,8 +26,8 @@ public abstract class AnimatedEntity extends Entity {
     private AnimationProvider animationProvider;
     EntityDirection entityDirection;
 
-    AnimatedEntity(int x, int y, int width, int height, boolean isCollidable, float movementSpeed, float velocitySmooth, int initialAnimationIndex, EntityDirection startingEntityDirection) {
-        super(x, y, width, height, isCollidable, movementSpeed, velocitySmooth);
+    AnimatedEntity(int x, int y, int width, int height, boolean isCollidable, float movementSpeed, float velocitySmooth, int boundingBoxWidth, int boundingBoxHeight, int initialAnimationIndex, EntityDirection startingEntityDirection) {
+        super(x, y, width, height, isCollidable, movementSpeed, velocitySmooth, boundingBoxWidth, boundingBoxHeight);
 
         this.animationProvider = new AnimationProvider(getAnimations(), initialAnimationIndex);
         this.entityDirection = startingEntityDirection;

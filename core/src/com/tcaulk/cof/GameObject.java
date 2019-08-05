@@ -15,7 +15,7 @@ public abstract class GameObject {
     protected float velocitySmooth;
     protected Rectangle boundingBox;
 
-    public GameObject(Vector2 position, int width, int height, boolean isCollidable, float movementSpeed, float velocitySmooth) {
+    public GameObject(Vector2 position, int width, int height, boolean isCollidable, float movementSpeed, float velocitySmooth, int boundingBoxWidth, int boundingBoxHeight) {
         this.position = position;
         this.width = width;
         this.height = height;
@@ -24,13 +24,13 @@ public abstract class GameObject {
         this.velocitySmooth = velocitySmooth;
 
         this.velocity = new Vector2(0, 0);
-        this.boundingBox = new Rectangle(position.x, position.y, width, height);
+        this.boundingBox = new Rectangle(0, 0, boundingBoxWidth, boundingBoxHeight);
     }
 
     public abstract void update(float delta);
 
     public void render(SpriteBatch batch) {
-        WireFrameRectangle.render(batch, (int) position.x, (int) position.y, width, height);
+        new WireFrameRectangle(width, height).render(batch, (int) position.x, (int) position.y, (int) boundingBox.width, (int) boundingBox.height);
     }
 
     public Vector2 getPosition() {

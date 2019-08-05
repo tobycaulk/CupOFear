@@ -7,13 +7,21 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class WireFrameRectangle {
 
-    public static void render(SpriteBatch batch, int x, int y, int width, int height) {
-        Pixmap pixmap = new Pixmap(width, height, Pixmap.Format.RGBA8888);
-        pixmap.setColor(new Color(0, 1, 1, 0.5f));
-        pixmap.drawLine(x, y, x + width, y);
-        pixmap.drawLine(x, y, x, y + height);
-        pixmap.drawLine(x, y + height, x + width, y + height);
-        pixmap.drawLine(x + width, y + height, x + width, y);
-        batch.draw(new Texture(pixmap), x, y, width, height);
+    private Texture wireframe;
+
+    public WireFrameRectangle(int width, int height) {
+        wireframe = getWireFrame(width, height);
+    }
+
+    private Texture getWireFrame(int width, int height) {
+        Pixmap pixmap = new Pixmap(width, height, Pixmap.Format.RGB888);
+        pixmap.setColor(Color.WHITE);
+        pixmap.drawRectangle(0, 0, width, height);
+
+        return new Texture(pixmap);
+    }
+
+    public void render(SpriteBatch batch, int x, int y, int width, int height) {
+        batch.draw(wireframe, x, y, width, height);
     }
 }
