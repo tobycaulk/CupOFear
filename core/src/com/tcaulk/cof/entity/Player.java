@@ -70,6 +70,8 @@ public class Player extends AnimatedEntity {
         velocity.add(acceleration);
         position.add(velocity);
 
+        System.out.println("Player " + position.x + " " + position.y + " " + width + " " + height);
+
         velocity.x *= velocitySmooth;
         velocity.y *= velocitySmooth;
 

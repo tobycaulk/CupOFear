@@ -43,7 +43,7 @@ public class Game implements Screen {
                 entityDirection = AnimatedEntity.EntityDirection.Left;
             }
 
-            gameObjects.add(new Skeleton(x, y, entityDirection, player));
+            //gameObjects.add(new Skeleton(x, y, entityDirection, player));
         }
     }
 
