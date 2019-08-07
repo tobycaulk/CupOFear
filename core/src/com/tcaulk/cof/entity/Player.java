@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Player extends AnimatedEntity {
 
-    private static final float MOVEMENT_SPEED = 150f;
+    private static final float MOVEMENT_SPEED = 100f;
     private static final float VELOCITY_SMOOTH = 0.52f;
 
     public static enum PlayerAnimation {
@@ -29,6 +29,7 @@ public class Player extends AnimatedEntity {
 
     private InputController inputController;
 
+
     public Player(int x, int y, InputController inputController) {
         super(x, y, 48, 84, true, MOVEMENT_SPEED, VELOCITY_SMOOTH, 38, 54, PlayerAnimation.IDLE.getAnimationIndex(), EntityDirection.Right);
 
@@ -38,7 +39,7 @@ public class Player extends AnimatedEntity {
     @Override
     protected List<Animation> getAnimations() {
         return Arrays.asList(
-                new Animation(TextureStore.SPRITESHEET, Animation.getFrameRange(128, 100, 16, 28, 4)),
+                new Animation(TextureStore.SPRITESHEET, Animation.getFrameRange(128, 100, 16, 28, 1)),
                 new Animation(TextureStore.SPRITESHEET, Animation.getFrameRange(192, 100, 16, 28, 4))
         );
     }
@@ -69,8 +70,6 @@ public class Player extends AnimatedEntity {
 
         velocity.add(acceleration);
         position.add(velocity);
-
-        System.out.println("Player " + position.x + " " + position.y + " " + width + " " + height);
 
         velocity.x *= velocitySmooth;
         velocity.y *= velocitySmooth;

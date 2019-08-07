@@ -34,7 +34,7 @@ public abstract class GameObject {
     public abstract void update(float delta);
 
     public void render(SpriteBatch batch) {
-        wireFrameRectangle.render(batch, position);
+        //wireFrameRectangle.render(batch, position);
     }
 
     public Vector2 getPosition() {
